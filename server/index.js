@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require("express");
 const app = express();
 const mysql = require("mysql");
@@ -7,11 +8,11 @@ app.use(cors());
 app.use(express.json());
 
 const db = mysql.createConnection({
-  user: "uudsobokn10qlhot",
-  password: "THzmqxf6MZIKt2G3EQDB",
-  host: "bimchf77fkabbagvzlyn-mysql.services.clever-cloud.com",
-  port: 3306,
-  database: "bimchf77fkabbagvzlyn",
+    host: process.env.MYSQL_HOSTNAME,
+    port: process.env.MYSQL_PORT,
+    user: process.env.MYSQL_USERNAME,
+    password: process.env.MYSQL_PASSWORD,
+    database: process.env.MYSQL_DB,
 });
 
 app.get("/", async (req, res) => {
